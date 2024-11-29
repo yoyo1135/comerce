@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-//import net.cfl.proshop.enums.PedidoEstado;  // Cambio el nombre del enum también si lo es necesario
+import net.cfl.comerceshop.enums.EstadoPedido;  
 
 @Getter
 @Setter
@@ -30,14 +30,14 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate pedidoFecha;  // Renombrado a pedidoFecha
+    private LocalDate pedidoFecha;  
     private BigDecimal montoTotal;
 
     @Enumerated(EnumType.STRING)
-    private PedidoEstado pedidoEstado;  // Renombrado el enum a PedidoEstado
+    private EstadoPedido pedidoEstado;  
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PedidoItem> pedidoItems = new HashSet<>();  // Renombrado a PedidoItem
+    private Set<PedidoItem> pedidoItems = new HashSet<>();  
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

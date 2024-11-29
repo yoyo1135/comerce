@@ -28,9 +28,6 @@ public class CategoriaServicio implements ICategoriaServicio{
 		return categoriaRepositorio.findByNombre(nombre);
 	}
 	
-	/*
-	 * Lista Todas las categorias
-	 * */
 	@Override
 	public List<Categoria> listarCategorias() {
 		return categoriaRepositorio.findAll();
@@ -44,9 +41,7 @@ public class CategoriaServicio implements ICategoriaServicio{
 				.orElseThrow(() -> new CategoriaExistenteEx(categoria.getNombre() + " ya existe en la base de datos"));
 	}
 
-	/*
-	 * Actualiza la categoria a travez de su id
-	 * */
+	
 	@Override
 	public Categoria actualizaCategoria(Categoria categoriaNueva, Long id) {
 		return Optional.ofNullable(listaCategoriaPorId(id)).map(categoriaVieja -> {
@@ -54,11 +49,7 @@ public class CategoriaServicio implements ICategoriaServicio{
 			return categoriaRepositorio.save(categoriaVieja);
 		}).orElseThrow(() -> new RecursoNoEncontradoEx("Categoria no encontrada"));
 	}
-	/*
-	 * Borra una categoria, por id
-	 * Le eviamos el id de la categoria y lo borra
-	 * en el caso de que exista 
-	 * */
+	
 	@Override
 	public void borrarCategoriaPorId(Long id) {
 		categoriaRepositorio.findById(id)
